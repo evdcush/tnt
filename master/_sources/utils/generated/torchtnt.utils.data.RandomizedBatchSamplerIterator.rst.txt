@@ -1,0 +1,22 @@
+﻿torchtnt.utils.data.RandomizedBatchSamplerIterator
+==================================================
+
+.. currentmodule:: torchtnt.utils.data
+
+.. autoclass:: RandomizedBatchSamplerIterator
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RandomizedBatchSamplerIterator.__init__
+   
+   
+
+   
+   
+   

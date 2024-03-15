@@ -1,0 +1,22 @@
+﻿torchtnt.utils.data.AllDatasetBatchesIterator
+=============================================
+
+.. currentmodule:: torchtnt.utils.data
+
+.. autoclass:: AllDatasetBatchesIterator
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AllDatasetBatchesIterator.__init__
+   
+   
+
+   
+   
+   

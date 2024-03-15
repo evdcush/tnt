@@ -1,0 +1,1072 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>torchtnt.framework.callbacks.torchsnapshot_saver &mdash; TorchTNT master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/torchtnt.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/torchtnt.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','');</script>
+    <!-- End Google Tag Manager -->
+  
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://pytorch.org/" aria-label="PyTorch"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://pytorch.org/get-started">Get Started</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/ecosystem">Ecosystem</a>
+          </li>
+
+          <li>
+          <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a class="resource-option with-down-arrow">
+                Edge
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="nav-dropdown-item" href="https://pytorch.org/edge">
+                  <span class="dropdown-title">About PyTorch Edge</span>
+                </a>
+                <a class="nav-dropdown-item" href="https://pytorch.org/executorch">
+                  <span class="dropdown-title">ExecuTorch</span>
+                </a>
+              </div>
+            </div>  
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/blog/">Blog</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/tutorials">Tutorials</a>
+          </li>
+
+          <li>
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a class="resource-option with-down-orange-arrow">
+                Docs
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item" href="https://pytorch.org/docs/stable/index.html">
+                  <span class="dropdown-title">PyTorch</span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item" href="https://pytorch.org/audio/stable/index.html">
+                  <span class="dropdown-title">torchaudio</span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item" href="https://pytorch.org/text/stable/index.html">
+                  <span class="dropdown-title">torchtext</span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item" href="https://pytorch.org/vision/stable/index.html">
+                  <span class="dropdown-title">torchvision</span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item" href="https://pytorch.org/torcharrow">
+                  <span class="dropdown-title">torcharrow</span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item" href="https://pytorch.org/data">
+                  <span class="dropdown-title">TorchData</span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item" href="https://pytorch.org/torchrec">
+                  <span class="dropdown-title">TorchRec</span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item" href="https://pytorch.org/serve/">
+                  <span class="dropdown-title">TorchServe</span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item" href="https://pytorch.org/torchx/">
+                  <span class="dropdown-title">TorchX</span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item" href="https://pytorch.org/xla">
+                  <span class="dropdown-title">PyTorch on XLA Devices</span>
+                  <p></p>
+                </a>
+            </div>
+          </li>
+
+          <li>
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a class="resource-option with-down-arrow">
+                Resources
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="nav-dropdown-item" href="https://pytorch.org/features">
+                  <span class="dropdown-title">About</span>
+                  <p>Learn about PyTorch’s features and capabilities</p>
+                </a>
+                <a class="nav-dropdown-item" href="https://pytorch.org/foundation">
+                  <span class="dropdown-title">PyTorch Foundation</span>
+                  <p>Learn about the PyTorch foundation</p>
+                </a>
+                <a class="nav-dropdown-item" href="https://pytorch.org/#community-module">
+                  <span class="dropdown-title">Community</span>
+                  <p>Join the PyTorch developer community to contribute, learn, and get your questions answered.</p>
+                </a>
+                <a class="nav-dropdown-item" href="https://pytorch.org/community-stories">
+                  <span class="dropdown-title">Community Stories</span>
+                  <p>Learn how our community solves real, everyday machine learning problems with PyTorch.</p>
+                </a>
+                <a class="nav-dropdown-item" href="https://pytorch.org/resources">
+                  <span class="dropdown-title">Developer Resources</span>
+                  <p>Find resources and get questions answered</p>
+                </a>
+                <a class="nav-dropdown-item" href="https://pytorch.org/events">
+                  <span class="dropdown-title">Events</span>
+                  <p>Find events, webinars, and podcasts</p>
+                </a>
+                <a class="nav-dropdown-item" href="https://discuss.pytorch.org/" target="_blank">
+                  <span class="dropdown-title">Forums</span>
+                  <p>A place to discuss PyTorch code, issues, install, research</p>
+                </a>
+                <a class="nav-dropdown-item" href="https://pytorch.org/hub">
+                  <span class="dropdown-title">Models (Beta)</span>
+                  <p>Discover, publish, and reuse pre-trained models</p>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <a href="https://github.com/pytorch/pytorch">GitHub</a>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+  
+  
+    <div id="redirect-banner" style="display: none">
+      <p>
+        🎉 This is the public documentation. There is internal documentation for Meta employees at
+        <a href="https://www.internalfb.com/intern/staticdocs/torchtnt/">https://www.internalfb.com/intern/staticdocs/torchtnt/</a>
+      </p>
+    </div>
+  
+
+    
+
+    <div class="table-of-contents-link-wrapper">
+      <span>Table of Contents</span>
+      <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+    </div>
+
+    <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+      <div class="pytorch-side-scroll">
+        <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          <div class="pytorch-left-menu-search">
+            
+
+            
+              
+              
+                <div class="version">
+                  master (unstable)
+                </div>
+              
+            
+
+            
+
+
+  
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+            
+          </div>
+
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../distributed.html">Distributed training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../checkpointing.html">Checkpointing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Framework</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../framework/unit.html">Unit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../framework/auto_unit.html">AutoUnit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../framework/train.html">Train</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../framework/eval.html">Evaluate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../framework/predict.html">Predict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../framework/fit.html">Fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../framework/state.html">State</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../framework/callbacks.html">Callbacks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Utils</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../utils/utils.html">Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <div class="pytorch-container">
+      <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+        <div class="pytorch-breadcrumbs-wrapper">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../../../../index.html">
+          
+            Docs
+          
+        </a> &gt;
+      </li>
+
+        
+          <li><a href="../../../index.html">Module code</a> &gt;</li>
+        
+      <li>torchtnt.framework.callbacks.torchsnapshot_saver</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+        </div>
+
+        <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+          Shortcuts
+        </div>
+      </div>
+
+      <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+        <div class="pytorch-content-left">
+
+        
+          <!-- Google Tag Manager (noscript) -->
+          <noscript><iframe src="https://www.googletagmanager.com/ns.html?id="
+          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+          <!-- End Google Tag Manager (noscript) -->
+          
+          <div class="rst-content">
+          
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+             <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+              
+  <h1>Source code for torchtnt.framework.callbacks.torchsnapshot_saver</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) Meta Platforms, Inc. and affiliates.</span>
+<span class="c1"># All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># This source code is licensed under the BSD-style license found in the</span>
+<span class="c1"># LICENSE file in the root directory of this source tree.</span>
+
+<span class="c1"># pyre-strict</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span><span class="p">,</span> <span class="n">ExitStack</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">torch.distributed</span> <span class="k">as</span> <span class="nn">dist</span>
+
+<span class="kn">from</span> <span class="nn">torchtnt.framework.callbacks._checkpoint_utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_prepare_app_state</span><span class="p">,</span>
+    <span class="n">_prepare_app_state_for_checkpoint</span><span class="p">,</span>
+    <span class="n">_prepare_app_state_for_restore</span><span class="p">,</span>
+    <span class="n">_TRAIN_DL_STATE_KEY</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">torchtnt.framework.callbacks.base_checkpointer</span> <span class="kn">import</span> <span class="n">BaseCheckpointer</span>
+<span class="kn">from</span> <span class="nn">torchtnt.framework.callbacks.checkpointer_types</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BestCheckpointConfig</span><span class="p">,</span>
+    <span class="n">KnobOptions</span><span class="p">,</span>
+    <span class="n">RestoreOptions</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">torchtnt.framework.state</span> <span class="kn">import</span> <span class="n">State</span>
+<span class="kn">from</span> <span class="nn">torchtnt.framework.unit</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AppStateMixin</span><span class="p">,</span>
+    <span class="n">TEvalUnit</span><span class="p">,</span>
+    <span class="n">TPredictUnit</span><span class="p">,</span>
+    <span class="n">TTrainData</span><span class="p">,</span>
+    <span class="n">TTrainUnit</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">torchtnt.framework.utils</span> <span class="kn">import</span> <span class="n">get_timing_context</span>
+<span class="kn">from</span> <span class="nn">torchtnt.utils.optimizer</span> <span class="kn">import</span> <span class="n">init_optim_state</span>
+<span class="kn">from</span> <span class="nn">torchtnt.utils.rank_zero_log</span> <span class="kn">import</span> <span class="n">rank_zero_info</span><span class="p">,</span> <span class="n">rank_zero_warn</span>
+<span class="kn">from</span> <span class="nn">torchtnt.utils.stateful</span> <span class="kn">import</span> <span class="n">Stateful</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">torchsnapshot</span>
+    <span class="kn">from</span> <span class="nn">torchsnapshot.knobs</span> <span class="kn">import</span> <span class="n">override_max_per_rank_io_concurrency</span>
+    <span class="kn">from</span> <span class="nn">torchsnapshot.snapshot</span> <span class="kn">import</span> <span class="n">PendingSnapshot</span><span class="p">,</span> <span class="n">Snapshot</span>
+
+    <span class="n">_TStateful</span> <span class="o">=</span> <span class="n">torchsnapshot</span><span class="o">.</span><span class="n">Stateful</span>
+    <span class="n">_TORCHSNAPSHOT_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="n">_TStateful</span> <span class="o">=</span> <span class="n">Stateful</span>
+    <span class="n">_TORCHSNAPSHOT_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">_RNG_STATE_KEY</span> <span class="o">=</span> <span class="s2">&quot;rng_state&quot;</span>
+
+
+<span class="n">logger</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="TorchSnapshotSaver"><a class="viewcode-back" href="../../../../framework/generated/torchtnt.framework.callbacks.TorchSnapshotSaver.html#torchtnt.framework.callbacks.TorchSnapshotSaver">[docs]</a><span class="k">class</span> <span class="nc">TorchSnapshotSaver</span><span class="p">(</span><span class="n">BaseCheckpointer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A callback which periodically saves the application state during training using `TorchSnapshot &lt;https://pytorch.org/torchsnapshot/&gt;`_.</span>
+
+<span class="sd">    This callback supplements the application state provided by :class:`torchtnt.unit.AppStateMixin`</span>
+<span class="sd">    with the train progress, train dataloader (if applicable), and random number generator state.</span>
+
+<span class="sd">    If used with :func:`torchtnt.framework.fit`, this class will also save the evaluation progress state.</span>
+
+<span class="sd">    Checkpoints will be saved under ``dirpath/epoch_{epoch}_step_{step}`` where step is the *total* number of training and evaluation steps completed across all epochs.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dirpath: Parent directory to save snapshots to.</span>
+<span class="sd">        save_every_n_train_steps: Frequency of steps with which to save snapshots during the train epoch. If None, no intra-epoch snapshots are generated.</span>
+<span class="sd">        save_every_n_epochs: Frequency of epochs with which to save snapshots during training. If None, no end-of-epoch snapshots are generated.</span>
+<span class="sd">        save_every_n_eval_epochs: Frequency of evaluation epochs with which to save checkpoints during training. Use this if wanting to save checkpoints after every eval epoch during fit.</span>
+<span class="sd">        keep_last_n_checkpoints: Number of most recent checkpoints to keep. If None, all checkpoints are kept. If an excess of existing checkpoints are present, the oldest ones will be deleted to clean the difference. If best checkpoint config is enabled, this param will manage the top n checkpoints instead.</span>
+<span class="sd">        best_checkpoint_config: Configuration for saving the best checkpoint based on a monitored metric. The metric is read off the attribute of the unit prior to checkpoint.</span>
+<span class="sd">        process_group: The process group on which the ranks will communicate on. default: ``None`` (the entire world)</span>
+<span class="sd">        async_checkpoint: Whether to perform asynchronous snapshotting. Default: ``True``.</span>
+<span class="sd">        replicated: A glob-pattern of replicated key names that indicate which application state entries have the same state across all processes.</span>
+<span class="sd">            For more information, see https://pytorch.org/torchsnapshot/main/api_reference.html#torchsnapshot.Snapshot.take.</span>
+
+<span class="sd">            .. warning:: The replication property is safer to not set, and should only be used if really needed.</span>
+<span class="sd">                         Things like metrics, grad_scalers, etc should not be marked as replicated as they</span>
+<span class="sd">                         may contain different values across processes. If unsure, leave this field unset.</span>
+
+<span class="sd">        storage_options: Additional keyword options for the storage plugin to use, to be passed to `torchsnapshot.Snapshot &lt;https://pytorch.org/torchsnapshot/stable/api_reference.html#torchsnapshot.Snapshot&gt;`_.</span>
+<span class="sd">            See each storage plugin&#39;s documentation for customizations.</span>
+<span class="sd">        knob_options: Additional keyword options for the snapshot knobs</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        If torch.distributed is available and default process group is initialized, the constructor will call a collective operation for rank 0 to broadcast the dirpath to all other ranks</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        If checkpointing FSDP model, you can set state_dict type calling `set_state_dict_type &lt;https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.FullyShardedDataParallel.set_state_dict_type&gt;`_ prior to starting training.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        If best_checkpoint_config is enabled, the attribute must be on the unit upon checkpoint time, and must be castable to &quot;float&quot;. This value must be maintained by the unit, and updated</span>
+<span class="sd">        appropriately. For example, if logging validation accuracy, the unit must be responsible for maintaining the value and resetting it when the epoch ends.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">metadata_fname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;.snapshot_metadata&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dirpath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">save_every_n_train_steps</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">save_every_n_epochs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">save_every_n_eval_epochs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">keep_last_n_checkpoints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">best_checkpoint_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">BestCheckpointConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">process_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">dist</span><span class="o">.</span><span class="n">ProcessGroup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">async_checkpoint</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">replicated</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">storage_options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">knob_options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">KnobOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_validate_snapshot_available</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">dirpath</span><span class="o">=</span><span class="n">dirpath</span><span class="p">,</span>
+            <span class="n">save_every_n_train_steps</span><span class="o">=</span><span class="n">save_every_n_train_steps</span><span class="p">,</span>
+            <span class="n">save_every_n_epochs</span><span class="o">=</span><span class="n">save_every_n_epochs</span><span class="p">,</span>
+            <span class="n">save_every_n_eval_epochs</span><span class="o">=</span><span class="n">save_every_n_eval_epochs</span><span class="p">,</span>
+            <span class="n">keep_last_n_checkpoints</span><span class="o">=</span><span class="n">keep_last_n_checkpoints</span><span class="p">,</span>
+            <span class="n">best_checkpoint_config</span><span class="o">=</span><span class="n">best_checkpoint_config</span><span class="p">,</span>
+            <span class="n">process_group</span><span class="o">=</span><span class="n">process_group</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_async_checkpoint</span> <span class="o">=</span> <span class="n">async_checkpoint</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_replicated</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">replicated</span> <span class="ow">or</span> <span class="p">[])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prev_snapshot</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PendingSnapshot</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_storage_options</span> <span class="o">=</span> <span class="n">storage_options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_knob_options</span><span class="p">:</span> <span class="n">KnobOptions</span> <span class="o">=</span> <span class="n">knob_options</span> <span class="ow">or</span> <span class="n">KnobOptions</span><span class="p">()</span>
+
+<div class="viewcode-block" id="TorchSnapshotSaver.on_train_start"><a class="viewcode-back" href="../../../../framework/generated/torchtnt.framework.callbacks.TorchSnapshotSaver.html#torchtnt.framework.callbacks.TorchSnapshotSaver.on_train_start">[docs]</a>    <span class="k">def</span> <span class="nf">on_train_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="n">TTrainUnit</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate there&#39;s no key collision for the app state.&quot;&quot;&quot;</span>
+        <span class="n">app_state</span> <span class="o">=</span> <span class="n">_prepare_app_state</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+        <span class="n">_check_app_state_collision</span><span class="p">(</span><span class="n">app_state</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">on_train_start</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TorchSnapshotSaver.on_exception"><a class="viewcode-back" href="../../../../framework/generated/torchtnt.framework.callbacks.TorchSnapshotSaver.html#torchtnt.framework.callbacks.TorchSnapshotSaver.on_exception">[docs]</a>    <span class="k">def</span> <span class="nf">on_exception</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
+        <span class="n">unit</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">TTrainUnit</span><span class="p">,</span> <span class="n">TEvalUnit</span><span class="p">,</span> <span class="n">TPredictUnit</span><span class="p">],</span>
+        <span class="n">exc</span><span class="p">:</span> <span class="ne">BaseException</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_wait</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_checkpoint_impl</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
+        <span class="n">unit</span><span class="p">:</span> <span class="n">AppStateMixin</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">checkpoint_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">hook</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checkpoint the current state of the application.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">hook</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;on_train_step_end&quot;</span><span class="p">,</span> <span class="s2">&quot;on_train_epoch_end&quot;</span><span class="p">,</span> <span class="s2">&quot;on_train_end&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected hook encountered &#39;</span><span class="si">{</span><span class="n">hook</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+        <span class="n">intra_epoch</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">curr_snapshot_wait</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">hook</span> <span class="o">==</span> <span class="s2">&quot;on_train_step_end&quot;</span><span class="p">:</span>
+            <span class="n">intra_epoch</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="n">hook</span> <span class="o">==</span> <span class="s2">&quot;on_train_end&quot;</span><span class="p">:</span>
+            <span class="n">curr_snapshot_wait</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">app_state</span> <span class="o">=</span> <span class="n">_prepare_app_state_for_checkpoint</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">intra_epoch</span><span class="p">)</span>
+        <span class="n">rng_state</span> <span class="o">=</span> <span class="n">torchsnapshot</span><span class="o">.</span><span class="n">RNGState</span><span class="p">()</span>
+        <span class="n">app_state</span><span class="p">[</span><span class="n">_RNG_STATE_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="n">rng_state</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_async_checkpoint</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">get_timing_context</span><span class="p">(</span>
+                <span class="n">state</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.take_async_snapshot&quot;</span>
+            <span class="p">):</span>
+                <span class="c1"># TODO checkpoint is not truly successful</span>
+                <span class="c1"># since this is async checkpointed, so in</span>
+                <span class="c1"># future, add logic to set  successful flag</span>
+                <span class="c1"># only when checkpoint is fully written</span>
+                <span class="n">checkpoint_success</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_async_snapshot</span><span class="p">(</span><span class="n">checkpoint_path</span><span class="p">,</span> <span class="n">app_state</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">curr_snapshot_wait</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_wait</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">get_timing_context</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.take_snapshot&quot;</span><span class="p">):</span>
+                <span class="n">checkpoint_success</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sync_snapshot</span><span class="p">(</span><span class="n">checkpoint_path</span><span class="p">,</span> <span class="n">app_state</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">checkpoint_success</span>
+
+    <span class="k">def</span> <span class="nf">_wait</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prev_snapshot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_prev_snapshot</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_async_snapshot</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">snapshot_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">app_state</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_TStateful</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">prev_snapshot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prev_snapshot</span>
+        <span class="k">if</span> <span class="n">prev_snapshot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">prev_snapshot</span><span class="o">.</span><span class="n">path</span> <span class="o">==</span> <span class="n">snapshot_path</span><span class="p">:</span>
+                <span class="c1"># Snapshot for this step already has been saved.</span>
+                <span class="c1"># This can happen if we call _async_snapshot twice at the same step.</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="n">still_pending</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">prev_snapshot</span><span class="o">.</span><span class="n">done</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">still_pending</span><span class="p">:</span>
+                <span class="n">rank_zero_warn</span><span class="p">(</span>
+                    <span class="p">(</span>
+                        <span class="s2">&quot;Still writing previous snapshot; waiting for it to finish before writing a new one. &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;Consider increasing &#39;frequency&#39; (current </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_save_every_n_train_steps</span><span class="si">}</span><span class="s2">)&quot;</span>
+                    <span class="p">),</span>
+                    <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">prev_snapshot</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+
+        <span class="n">replicated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_replicated</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_replicated</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;**&quot;</span><span class="p">}:</span>
+            <span class="n">replicated</span> <span class="o">=</span> <span class="n">_exclude_progress_from_replicated</span><span class="p">(</span><span class="n">app_state</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">_override_knobs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_knob_options</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_prev_snapshot</span> <span class="o">=</span> <span class="n">Snapshot</span><span class="o">.</span><span class="n">async_take</span><span class="p">(</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">snapshot_path</span><span class="p">),</span>
+                <span class="n">app_state</span><span class="o">=</span><span class="n">app_state</span><span class="p">,</span>
+                <span class="n">pg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_process_group</span><span class="p">,</span>
+                <span class="n">replicated</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">replicated</span><span class="p">),</span>
+                <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_storage_options</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="n">rank_zero_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving snapshot to path: </span><span class="si">{</span><span class="n">snapshot_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">_sync_snapshot</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">snapshot_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">app_state</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_TStateful</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">replicated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_replicated</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_replicated</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;**&quot;</span><span class="p">}:</span>
+            <span class="n">replicated</span> <span class="o">=</span> <span class="n">_exclude_progress_from_replicated</span><span class="p">(</span><span class="n">app_state</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">_override_knobs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_knob_options</span><span class="p">):</span>
+            <span class="n">rank_zero_info</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Started saving snapshot to path: </span><span class="si">{</span><span class="n">snapshot_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span>
+            <span class="p">)</span>
+            <span class="n">Snapshot</span><span class="o">.</span><span class="n">take</span><span class="p">(</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">snapshot_path</span><span class="p">),</span>
+                <span class="n">app_state</span><span class="o">=</span><span class="n">app_state</span><span class="p">,</span>
+                <span class="n">pg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_process_group</span><span class="p">,</span>
+                <span class="n">replicated</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">replicated</span><span class="p">),</span>
+                <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_storage_options</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="n">rank_zero_info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Finished saving snapshot to path: </span><span class="si">{</span><span class="n">snapshot_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="TorchSnapshotSaver.restore"><a class="viewcode-back" href="../../../../framework/generated/torchtnt.framework.callbacks.TorchSnapshotSaver.html#torchtnt.framework.callbacks.TorchSnapshotSaver.restore">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">restore</span><span class="p">(</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">unit</span><span class="p">:</span> <span class="n">AppStateMixin</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">train_dataloader</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="n">TTrainData</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">process_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">dist</span><span class="o">.</span><span class="n">ProcessGroup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">restore_options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RestoreOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">storage_options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">knob_options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">KnobOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Utility method to restore snapshot state from a path.</span>
+
+<span class="sd">        There are additional flags offered should the user want to skip loading the train and eval progress.</span>
+<span class="sd">        By default, the train and eval progress are restored, if applicable.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path: Path of the snapshot to restore.</span>
+<span class="sd">            unit: An instance of :class:`~torchtnt.framework.unit.TrainUnit`, :class:`~torchtnt.framework.unit.EvalUnit`, or :class:`~torchtnt.framework.unit.PredictUnit` containing states to restore.</span>
+<span class="sd">            train_dataloader: An optional train dataloader to restore.</span>
+<span class="sd">            process_group: The process group on which the ranks will communicate on. default: ``None`` (the entire world)</span>
+<span class="sd">            restore_options: Controls what to  filter when restoring the state.</span>
+<span class="sd">            storage_options: Additional keyword options for the storage plugin to use, to be passed to `torchsnapshot.Snapshot &lt;https://pytorch.org/torchsnapshot/stable/api_reference.html#torchsnapshot.Snapshot&gt;`_. See each storage plugin&#39;s documentation for customizations.</span>
+<span class="sd">            knob_options: Additional keyword options for the snapshot knobs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">_validate_snapshot_available</span><span class="p">()</span>
+
+        <span class="c1"># initialize optimizer state skeletons for in-place loading of optimizer state with torchsnapshot</span>
+        <span class="k">for</span> <span class="n">optimizer</span> <span class="ow">in</span> <span class="n">unit</span><span class="o">.</span><span class="n">tracked_optimizers</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">init_optim_state</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span>
+
+        <span class="n">restore_options</span> <span class="o">=</span> <span class="n">restore_options</span> <span class="ow">or</span> <span class="n">RestoreOptions</span><span class="p">()</span>
+        <span class="n">app_state</span> <span class="o">=</span> <span class="n">_prepare_app_state_for_restore</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">restore_options</span><span class="p">)</span>
+        <span class="n">_check_app_state_collision</span><span class="p">(</span><span class="n">app_state</span><span class="p">)</span>
+
+        <span class="n">snapshot</span> <span class="o">=</span> <span class="n">torchsnapshot</span><span class="o">.</span><span class="n">Snapshot</span><span class="p">(</span>
+            <span class="n">path</span><span class="p">,</span> <span class="n">pg</span><span class="o">=</span><span class="n">process_group</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span>
+        <span class="p">)</span>
+
+        <span class="n">rng_state</span> <span class="o">=</span> <span class="n">torchsnapshot</span><span class="o">.</span><span class="n">RNGState</span><span class="p">()</span>
+        <span class="n">app_state</span><span class="p">[</span><span class="n">_RNG_STATE_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="n">rng_state</span>
+
+        <span class="k">if</span> <span class="n">train_dataloader</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">,</span> <span class="n">_TStateful</span><span class="p">):</span>
+                <span class="n">rank_zero_warn</span><span class="p">(</span>
+                    <span class="s2">&quot;train_dataloader was passed to `restore` but the dataloader does not implement the Stateful protocol to load states&quot;</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># request to restore the dataloader state only if</span>
+                <span class="c1"># the persisted snapshot state includes the dataloader entry</span>
+                <span class="n">manifest</span> <span class="o">=</span> <span class="n">snapshot</span><span class="o">.</span><span class="n">get_manifest</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">manifest</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">_TRAIN_DL_STATE_KEY</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                        <span class="n">app_state</span><span class="p">[</span><span class="n">_TRAIN_DL_STATE_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_dataloader</span>
+                        <span class="k">break</span>
+
+                <span class="k">if</span> <span class="n">_TRAIN_DL_STATE_KEY</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">app_state</span><span class="p">:</span>
+                    <span class="n">rank_zero_warn</span><span class="p">(</span>
+                        <span class="s2">&quot;train_dataloader was passed to `restore` but no train dataloader exists in the Snapshot&quot;</span>
+                    <span class="p">)</span>
+
+        <span class="n">knob_options</span> <span class="o">=</span> <span class="n">knob_options</span> <span class="ow">or</span> <span class="n">KnobOptions</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">_override_knobs</span><span class="p">(</span><span class="n">knob_options</span><span class="p">):</span>
+            <span class="n">snapshot</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">app_state</span><span class="p">)</span>
+        <span class="n">rank_zero_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Restored snapshot from path: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_exclude_progress_from_replicated</span><span class="p">(</span><span class="n">app_state</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_TStateful</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Excludes progress state from being replicated. Called if replicated=[&quot;**&quot;] is passed in.</span>
+<span class="sd">    Works by populating replicated with all possible keys from app_state, except for</span>
+<span class="sd">    the keys that match the &quot;{train,eval,predict}_progress/**&quot; pattern.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">filtered_replicated</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">progress_keys</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train_progress&quot;</span><span class="p">,</span> <span class="s2">&quot;eval_progress&quot;</span><span class="p">,</span> <span class="s2">&quot;predict_progress&quot;</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">app_state</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">progress_keys</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">filtered_replicated</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">/**&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">filtered_replicated</span>
+
+
+<span class="k">def</span> <span class="nf">_validate_snapshot_available</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_TORCHSNAPSHOT_AVAILABLE</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;TorchSnapshotSaver support requires torchsnapshot. &quot;</span>
+            <span class="s2">&quot;Please make sure ``torchsnapshot`` is installed. &quot;</span>
+            <span class="s2">&quot;Installation: https://github.com/pytorch/torchsnapshot#install&quot;</span>
+        <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_check_app_state_collision</span><span class="p">(</span><span class="n">app_state</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_TStateful</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">keys_to_check</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">_TRAIN_DL_STATE_KEY</span><span class="p">,</span>
+        <span class="n">_RNG_STATE_KEY</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys_to_check</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">app_state</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Detected collision for key in app state: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">. TorchSnapshotSaver expects to save and load this key.&quot;</span>
+            <span class="p">)</span>
+
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">_override_knobs</span><span class="p">(</span>
+    <span class="n">knob_options</span><span class="p">:</span> <span class="n">KnobOptions</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+    <span class="n">knobs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">knob_options</span><span class="o">.</span><span class="n">max_per_rank_io_concurrency</span><span class="p">:</span>
+        <span class="n">knobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">override_max_per_rank_io_concurrency</span><span class="p">(</span>
+                <span class="n">knob_options</span><span class="o">.</span><span class="n">max_per_rank_io_concurrency</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">ExitStack</span><span class="p">()</span> <span class="k">as</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">mgr</span> <span class="ow">in</span> <span class="n">knobs</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">mgr</span><span class="p">)</span>
+        <span class="k">yield</span>
+</pre></div>
+
+             </article>
+             
+            </div>
+            <footer>
+  
+
+  
+
+    <hr>
+
+  
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Meta.
+
+    </p>
+  </div>
+    
+      <div>
+        Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+      </div>
+     
+
+</footer>
+
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  
+
+
+  
+
+     
+       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+         <script src="../../../../_static/jquery.js"></script>
+         <script src="../../../../_static/underscore.js"></script>
+         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+         <script src="../../../../_static/doctools.js"></script>
+         <script src="../../../../_static/js/torchtnt.js"></script>
+     
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <h2>Docs</h2>
+          <p>Access comprehensive developer documentation for PyTorch</p>
+          <a class="with-right-arrow" href="https://pytorch.org/docs/stable/index.html">View Docs</a>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <h2>Tutorials</h2>
+          <p>Get in-depth tutorials for beginners and advanced developers</p>
+          <a class="with-right-arrow" href="https://pytorch.org/tutorials">View Tutorials</a>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <h2>Resources</h2>
+          <p>Find development resources and get your questions answered</p>
+          <a class="with-right-arrow" href="https://pytorch.org/resources">View Resources</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-logo-wrapper">
+        <a href="https://pytorch.org/" class="footer-logo"></a>
+      </div>
+
+      <div class="footer-links-wrapper">
+        <div class="footer-links-col">
+          <ul>
+            <li class="list-title"><a href="https://pytorch.org/">PyTorch</a></li>
+            <li><a href="https://pytorch.org/get-started">Get Started</a></li>
+            <li><a href="https://pytorch.org/features">Features</a></li>
+            <li><a href="https://pytorch.org/ecosystem">Ecosystem</a></li>
+            <li><a href="https://pytorch.org/blog/">Blog</a></li>
+            <li><a href="https://github.com/pytorch/pytorch/blob/master/CONTRIBUTING.md">Contributing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <ul>
+            <li class="list-title"><a href="https://pytorch.org/resources">Resources</a></li>
+            <li><a href="https://pytorch.org/tutorials">Tutorials</a></li>
+            <li><a href="https://pytorch.org/docs/stable/index.html">Docs</a></li>
+            <li><a href="https://discuss.pytorch.org" target="_blank">Discuss</a></li>
+            <li><a href="https://github.com/pytorch/pytorch/issues" target="_blank">Github Issues</a></li>
+            <li><a href="https://pytorch.org/assets/brand-guidelines/PyTorch-Brand-Guidelines.pdf" target="_blank">Brand Guidelines</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <ul>
+            <li class="list-title">Stay up to date</li>
+            <li><a href="https://www.facebook.com/pytorch" target="_blank">Facebook</a></li>
+            <li><a href="https://twitter.com/pytorch" target="_blank">Twitter</a></li>
+            <li><a href="https://www.youtube.com/pytorch" target="_blank">YouTube</a></li>
+            <li><a href="https://www.linkedin.com/company/pytorch" target="_blank">LinkedIn</a></li>
+          </ul>  
+          </div>
+
+        <div class="footer-links-col">
+          <ul>
+            <li class="list-title">PyTorch Podcasts</li>
+            <li><a href="https://open.spotify.com/show/6UzHKeiy368jKfQMKKvJY5" target="_blank">Spotify</a></li>
+            <li><a href="https://podcasts.apple.com/us/podcast/pytorch-developer-podcast/id1566080008" target="_blank">Apple</a></li>
+            <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkcy5zaW1wbGVjYXN0LmNvbS9PQjVGa0lsOA%3D%3D" target="_blank">Google</a></li>
+            <li><a href="https://music.amazon.com/podcasts/7a4e6f0e-26c2-49e9-a478-41bd244197d0/PyTorch-Developer-Podcast?" target="_blank">Amazon</a></li>
+          </ul>
+         </div>
+        </div>
+        
+        <div class="privacy-policy">
+          <ul>
+            <li class="privacy-policy-links"><a href="https://www.linuxfoundation.org/terms/" target="_blank">Terms</a></li>
+            <li class="privacy-policy-links">|</li>
+            <li class="privacy-policy-links"><a href="https://www.linuxfoundation.org/privacy-policy/" target="_blank">Privacy</a></li>
+          </ul>
+        </div>
+        <div class="copyright">
+        <p>© Copyright The Linux Foundation. The PyTorch Foundation is a project of The Linux Foundation.
+          For web site terms of use, trademark policy and other policies applicable to The PyTorch Foundation please see
+          <a href="https://www.linuxfoundation.org/policies/">www.linuxfoundation.org/policies/</a>. The PyTorch Foundation supports the PyTorch open source
+          project, which has been established as PyTorch Project a Series of LF Projects, LLC. For policies applicable to the PyTorch Project a Series of LF Projects, LLC,
+          please see <a href="https://www.lfprojects.org/policies/">www.lfprojects.org/policies/</a>.</p>
+      </div>
+     </div>
+
+  </footer>
+
+  <div class="cookie-banner-wrapper">
+  <div class="container">
+    <p class="gdpr-notice">To analyze traffic and optimize your experience, we serve cookies on this site. By clicking or navigating, you agree to allow our usage of cookies. As the current maintainers of this site, Facebook’s Cookies Policy applies. Learn more, including about available controls: <a href="https://www.facebook.com/policies/cookies/">Cookies Policy</a>.</p>
+    <img class="close-button" src="../../../../_static/images/pytorch-x.svg">
+  </div>
+</div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://pytorch.org/" aria-label="PyTorch"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://pytorch.org/get-started">Get Started</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/ecosystem">Ecosystem</a>
+          </li>
+            
+          <li>
+            <a href="">Mobile</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/blog/">Blog</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/tutorials">Tutorials</a>
+          </li>
+
+          <li class="resources-mobile-menu-title">
+            Docs
+          </li>
+
+          <ul class="resources-mobile-menu-items">
+            <li>
+              <a href="https://pytorch.org/docs/stable/index.html">PyTorch</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/audio/stable/index.html">torchaudio</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/text/stable/index.html">torchtext</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/vision/stable/index.html">torchvision</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/torcharrow">torcharrow</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/data">TorchData</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/torchrec">TorchRec</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/serve/">TorchServe</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/torchx/">TorchX</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/xla">PyTorch on XLA Devices</a>
+            </li>
+          </ul>
+
+          <li class="resources-mobile-menu-title">
+            Resources
+          </li>
+            
+           <ul class="resources-mobile-menu-items">
+
+            <li>
+              <a href="https://pytorch.org/features">About</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/foundation">PyTorch Foundation</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/#community-module">Community</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/community-stories">Community Stories</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/resources">Developer Resources</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/events">Events</a>
+            </li>
+
+            <li>
+              <a href="https://discuss.pytorch.org/">Forums</a>
+            </li>
+
+            <li>
+              <a href="https://pytorch.org/hub">Models (Beta)</a>
+            </li>
+          </ul>
+
+          <li>
+            <a href="https://github.com/pytorch/pytorch">Github</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function(e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+</html>
